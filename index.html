@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <v-card>
+                    <v-img :src="backgroundImage" height="375"></v-img>
+                </v-card>
+                <v-card flat>
+                    <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+                        <v-tab v-for="item in items" :key="item">
+                            {{ item }}
+                        </v-tab>
+                    </v-tabs>
+
+                    <v-tabs-items v-model="tab">
+                        <v-tab-item key="0">
+
+                            <v-row no-gutters class="pa-5">
+                                <v-col v-for="experience in experienceList" :key="experience.id">
+
+                                    <v-card class="mx-auto" max-width="344">
+                                        <v-img :src="experience.jobImage" height="200px"></v-img>
+
+                                        <v-card-title>
+                                            {{experience.position}}
+                                        </v-card-title>
+
+                                        <v-card-subtitle>
+                                            {{experience.fromTo}}
+                                        </v-card-subtitle>
+
+                                        <v-card-actions>
+                                            <v-btn color="orange lighten-2" text>
+                                                Detail
+                                            </v-btn>
+
+                                            <v-spacer></v-spacer>
+
+                                            <v-btn icon @click="experience.show = !experience.show">
+                                                <v-icon>{{ experience.show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                            </v-btn>
+                                        </v-card-actions>
+
+                                        <v-expand-transition>
+                                            <div v-show="experience.show">
+                                                <v-divider></v-divider>
+
+                                                <v-card-text>
+                                                    {{experience.description}}
+                                                </v-card-text>
+                                            </div>
+                                        </v-expand-transition>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+
+                        </v-tab-item>
+                    </v-tabs-items>
+                </v-card>
+
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    tab: 0,
+                    backgroundImage: 'https://picsum.photos/id/11/500/300',
+                    items: [
+                        'Experience', 'Education', 'Hobby'
+                    ],
+                    experienceList: [
+                        {
+                            id: 0,
+                            show: false,
+                            jobImage: ' https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+                            position: "Software Engineer",
+                            fromTo: "2019 ~ ",
+                            description: "I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed  making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape."
+                        },
+                        {
+                            id: 1,
+                            show: false,
+                            jobImage: 'https://picsum.photos/id/11/500/300',
+                            position: "Software Engineer",
+                            fromTo: "2015 ~ 2019",
+                            description: "I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed  making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape."
+
+                        },
+                        {
+                            id: 2,
+                            show: false,
+                            jobImage: 'https://picsum.photos/id/11/500/300',
+                            position: "Software Engineer",
+                            fromTo: "2010 ~ 2015",
+                            description: "I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed  making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape."
+
+                        }
+                    ],
+                    show: false,
+
+                }
+
+            }
+        })
+    </script>
+
+    <style>
+        /* Helper classes */
+    </style>
+</body>
+
+</html>
